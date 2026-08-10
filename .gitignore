@@ -1,0 +1,34 @@
+# Credentials — never commit these (copy to other machines manually)
+*creds*
+*key*.txt
+*.pem
+
+# Bot/monitor state and logs — machine-local, belong to whichever box runs the bot
+*_state.json
+*state.json
+*state.v1backup.json
+*.log
+dvc_inventory_log.md
+helios_rate_log.md
+
+# Scratch, caches, dumps
+__pycache__/
+.playwright-mcp/
+*.tmp.*
+*.bak
+*_dump*.html
+nohup.out
+
+# Dropbox fossils
+*conflicted copy*
+
+# Completed-trip archive: stays local only (contains inline tokens, scraped
+# session dumps, and binaries — never push). Reference it in place.
+Gen Con/
+
+# Belt and suspenders
+*.exe
+*state*.json
+*.bak.json
+passkey*
+scheduled_tasks.lock

@@ -1,0 +1,214 @@
+timestamp,park,land,ride,is_open,wait_min
+2026-08-09T20:19,magic-kingdom,,Meet Festive Disney Pals at Mickey’s Not-So-Scary Halloween Party,False,0
+2026-08-09T20:19,magic-kingdom,Adventureland,A Pirate's Adventure ~ Treasures of the Seven Seas,False,0
+2026-08-09T20:19,magic-kingdom,Adventureland,Jungle Cruise,True,35
+2026-08-09T20:19,magic-kingdom,Adventureland,Pirates of the Caribbean,True,10
+2026-08-09T20:19,magic-kingdom,Adventureland,Swiss Family Treehouse,True,5
+2026-08-09T20:19,magic-kingdom,Adventureland,The Magic Carpets of Aladdin,True,5
+2026-08-09T20:19,magic-kingdom,Adventureland,Walt Disney's Enchanted Tiki Room,True,10
+2026-08-09T20:19,magic-kingdom,Fantasyland,"""it's a small world""",True,5
+2026-08-09T20:19,magic-kingdom,Fantasyland,Casey Jr. Splash 'N' Soak Station,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Cinderella Castle,True,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Dumbo the Flying Elephant,True,25
+2026-08-09T20:19,magic-kingdom,Fantasyland,Enchanted Tales with Belle,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Mad Tea Party,True,5
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Ariel at Her Grotto,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Cinderella and a Visiting Princess at Princess Fairytale Hall,True,15
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Daring Disney Pals as Circus Stars at Pete's Silly Sideshow,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Dashing Disney Pals as Circus Stars at Pete's Silly Sideshow,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Princess Tiana and a Visiting Princess at Princess Fairytale Hall,True,20
+2026-08-09T20:19,magic-kingdom,Fantasyland,Mickey's PhilharMagic,True,10
+2026-08-09T20:19,magic-kingdom,Fantasyland,Peter Pan's Flight,True,55
+2026-08-09T20:19,magic-kingdom,Fantasyland,Prince Charming Regal Carrousel,True,5
+2026-08-09T20:19,magic-kingdom,Fantasyland,Seven Dwarfs Mine Train,True,45
+2026-08-09T20:19,magic-kingdom,Fantasyland,The Barnstormer,True,10
+2026-08-09T20:19,magic-kingdom,Fantasyland,The Many Adventures of Winnie the Pooh,True,40
+2026-08-09T20:19,magic-kingdom,Fantasyland,Under the Sea - Journey of The Little Mermaid,True,10
+2026-08-09T20:19,magic-kingdom,Fantasyland,Walt Disney World Railroad - Fantasyland,True,15
+2026-08-09T20:19,magic-kingdom,Frontierland,Big Thunder Mountain Railroad,True,50
+2026-08-09T20:19,magic-kingdom,Frontierland,Country Bear Musical Jamboree,True,10
+2026-08-09T20:19,magic-kingdom,Frontierland,Tiana's Bayou Adventure,True,35
+2026-08-09T20:19,magic-kingdom,Liberty Square,Haunted Mansion,True,20
+2026-08-09T20:19,magic-kingdom,Liberty Square,The Hall of Presidents,True,15
+2026-08-09T20:19,magic-kingdom,"Main Street, U.S.A.",Main Street Vehicles,False,0
+2026-08-09T20:19,magic-kingdom,"Main Street, U.S.A.",Meet Mickey at Town Square Theater,True,15
+2026-08-09T20:19,magic-kingdom,"Main Street, U.S.A.","Walt Disney World Railroad - Main Street, U.S.A.",True,15
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Astro Orbiter,True,30
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Buzz Lightyear’s Space Ranger Spin,False,0
+2026-08-09T20:19,magic-kingdom,Tomorrowland,"Monsters, Inc. Laugh Floor",True,10
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Space Mountain,True,60
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Tomorrowland Speedway,True,20
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Tomorrowland Transit Authority PeopleMover,True,15
+2026-08-09T20:19,magic-kingdom,Tomorrowland,TRON Lightcycle / Run,True,75
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Walt Disney's Carousel of Progress,False,0
+2026-08-09T20:19,magic-kingdom,Other,Meet Mickey Mouse and Minnie Mouse at Mickey's Not-So-Scary Halloween Party,False,0
+2026-08-09T20:19,epcot,World Celebration,Disney and Pixar Short Film Festival,True,0
+2026-08-09T20:19,epcot,World Celebration,Journey Into Imagination With Figment,True,5
+2026-08-09T20:19,epcot,World Celebration,Meet Beloved Disney Pals at Mickey & Friends,True,20
+2026-08-09T20:19,epcot,World Celebration,Spaceship Earth,True,5
+2026-08-09T20:19,epcot,World Discovery,Guardians of the Galaxy: Cosmic Rewind,True,80
+2026-08-09T20:19,epcot,World Discovery,Mission: SPACE,True,15
+2026-08-09T20:19,epcot,World Discovery,Test Track,True,70
+2026-08-09T20:19,epcot,World Discovery,Test Track Presented by Chevrolet Single Rider,True,0
+2026-08-09T20:19,epcot,World Nature,Awesome Planet,True,0
+2026-08-09T20:19,epcot,World Nature,"Journey of Water, Inspired by Moana",True,0
+2026-08-09T20:19,epcot,World Nature,Living with the Land,True,5
+2026-08-09T20:19,epcot,World Nature,SeaBase Aquarium,True,0
+2026-08-09T20:19,epcot,World Nature,Soarin' Across America,True,10
+2026-08-09T20:19,epcot,World Nature,The Seas with Nemo & Friends,True,5
+2026-08-09T20:19,epcot,World Nature,Turtle Talk With Crush,True,15
+2026-08-09T20:19,epcot,World Showcase,Canada Far and Wide in Circle-Vision 360,True,15
+2026-08-09T20:19,epcot,World Showcase,Frozen Ever After,True,30
+2026-08-09T20:19,epcot,World Showcase,Gran Fiesta Tour Starring The Three Caballeros,True,5
+2026-08-09T20:19,epcot,World Showcase,Meet Anna and Elsa at Royal Sommerhus,False,0
+2026-08-09T20:19,epcot,World Showcase,Remy's Ratatouille Adventure,True,20
+2026-08-09T20:19,epcot,World Showcase,Remy's Ratatouille Adventure Single Rider,True,0
+2026-08-09T20:19,hollywood-studios,Animation Courtyard,Disney Jr. Mickey Mouse Clubhouse Live!,True,0
+2026-08-09T20:19,hollywood-studios,Animation Courtyard,Meet Ariel at Walt Disney Presents,False,0
+2026-08-09T20:19,hollywood-studios,Animation Courtyard,The Little Mermaid – A Musical Adventure,True,0
+2026-08-09T20:19,hollywood-studios,Animation Courtyard,Walt Disney Presents,False,0
+2026-08-09T20:19,hollywood-studios,Commissary Lane,Meet Disney Stars at Red Carpet Dreams,False,0
+2026-08-09T20:19,hollywood-studios,Echo Lake,For the First Time in Forever: A Frozen Sing-Along Celebration,True,0
+2026-08-09T20:19,hollywood-studios,Echo Lake,Indiana Jones™ Epic Stunt Spectacular!,True,0
+2026-08-09T20:19,hollywood-studios,Echo Lake,Meet Olaf at Celebrity Spotlight,False,0
+2026-08-09T20:19,hollywood-studios,Echo Lake,Star Tours – The Adventures Continue,True,5
+2026-08-09T20:19,hollywood-studios,Echo Lake,Vacation Fun - An Original Animated Short with Mickey & Minnie,False,0
+2026-08-09T20:19,hollywood-studios,Hollywood Boulevard,Mickey & Minnie's Runaway Railway,True,35
+2026-08-09T20:19,hollywood-studios,Pixar Plaza,Meet Edna Mode at the Edna Mode Experience,False,0
+2026-08-09T20:19,hollywood-studios,Pixar Plaza,Toy Story Mania!,True,50
+2026-08-09T20:19,hollywood-studios,Star Wars: Galaxy's Edge,Millennium Falcon: Smugglers Run,True,10
+2026-08-09T20:19,hollywood-studios,Star Wars: Galaxy's Edge,Millennium Falcon: Smugglers Run Single Rider,True,0
+2026-08-09T20:19,hollywood-studios,Star Wars: Galaxy's Edge,Star Wars: Rise of the Resistance,True,25
+2026-08-09T20:19,hollywood-studios,Star Wars: Galaxy's Edge,Star Wars: Rise of the Resistance Single Rider,True,0
+2026-08-09T20:19,hollywood-studios,Sunset Boulevard,Beauty and the Beast – Live on Stage,True,0
+2026-08-09T20:19,hollywood-studios,Sunset Boulevard,Rock 'n' Roller Coaster Starring Aerosmith Single Rider,True,0
+2026-08-09T20:19,hollywood-studios,Sunset Boulevard,Rock ’n’ Roller Coaster Starring The Muppets,True,35
+2026-08-09T20:19,hollywood-studios,Sunset Boulevard,The Twilight Zone™ Tower of Terror,True,20
+2026-08-09T20:19,hollywood-studios,Toy Story Land,Alien Swirling Saucers,True,5
+2026-08-09T20:19,hollywood-studios,Toy Story Land,Slinky Dog Dash,True,40
+2026-08-09T20:19,animal-kingdom,Africa,Festival of the Lion King,True,0
+2026-08-09T20:19,animal-kingdom,Africa,Gorilla Falls Exploration Trail,False,0
+2026-08-09T20:19,animal-kingdom,Africa,Kilimanjaro Safaris,False,0
+2026-08-09T20:19,animal-kingdom,Africa,Wildlife Express Train,False,0
+2026-08-09T20:19,animal-kingdom,Asia,Expedition Everest - Legend of the Forbidden Mountain,False,0
+2026-08-09T20:19,animal-kingdom,Asia,Expedition Everest - Legend of the Forbidden Mountain Single Rider,False,0
+2026-08-09T20:19,animal-kingdom,Asia,Feathered Friends in Flight!,True,0
+2026-08-09T20:19,animal-kingdom,Asia,Kali River Rapids,False,0
+2026-08-09T20:19,animal-kingdom,Conservation Station,Animal Care at Conservation Station,False,0
+2026-08-09T20:19,animal-kingdom,Conservation Station,Bluey's Wild World at Conservation Station,False,0
+2026-08-09T20:19,animal-kingdom,Dinoland U.S.A,Finding Nemo: The Big Blue... and Beyond!,True,0
+2026-08-09T20:19,animal-kingdom,Discovery Island,Discovery Island Trails,False,0
+2026-08-09T20:19,animal-kingdom,Discovery Island,Meet Favorite Disney Pals at Adventurers Outpost,False,0
+2026-08-09T20:19,animal-kingdom,Discovery Island,Meet Moana at Character Landing,False,0
+2026-08-09T20:19,animal-kingdom,Discovery Island,Tree of Life,True,0
+2026-08-09T20:19,animal-kingdom,Discovery Island,Zootopia: Better Zoogether!,False,0
+2026-08-09T20:19,animal-kingdom,Pandora - The World of Avatar,Avatar Flight of Passage,False,0
+2026-08-09T20:19,animal-kingdom,Pandora - The World of Avatar,Na'vi River Journey,False,0
+2026-08-09T20:19,animal-kingdom,The Oasis,The Oasis Exhibits,False,0
+2026-08-09T20:19,animal-kingdom,The Oasis,Wilderness Explorers,False,0
+2026-08-09T20:19,universal-studios,DreamWorks Land,Trolls Trollercoaster,True,5
+2026-08-09T20:19,universal-studios,Hollywood,E.T. Adventure™,True,35
+2026-08-09T20:19,universal-studios,Illumination's Minion Land,Despicable Me Minion Mayhem™,True,20
+2026-08-09T20:19,universal-studios,Illumination's Minion Land,Illumination's Villain-Con Minion Blast,True,5
+2026-08-09T20:19,universal-studios,New York,Race Through New York Starring Jimmy Fallon™,True,15
+2026-08-09T20:19,universal-studios,New York,Revenge of the Mummy™,True,25
+2026-08-09T20:19,universal-studios,New York,Revenge of the Mummy™ Single Rider,True,0
+2026-08-09T20:19,universal-studios,Production Central,TRANSFORMERS™ The Ride-3D,False,0
+2026-08-09T20:19,universal-studios,San Francisco,Fast & Furious - Supercharged™,False,0
+2026-08-09T20:19,universal-studios,San Francisco,Fast & Furious - Supercharged™ Single Rider,True,0
+2026-08-09T20:19,universal-studios,The Wizarding World of Harry Potter - Diagon Alley,Harry Potter and the Escape from Gringotts™,True,20
+2026-08-09T20:19,universal-studios,The Wizarding World of Harry Potter - Diagon Alley,Harry Potter and the Escape from Gringotts™ Single Rider,True,0
+2026-08-09T20:19,universal-studios,The Wizarding World of Harry Potter - Diagon Alley,Hogwarts Express™ - King's Cross Station,True,20
+2026-08-09T20:19,universal-studios,The Wizarding World of Harry Potter - Diagon Alley,Hogwarts™ Express - First Train,False,0
+2026-08-09T20:19,universal-studios,The Wizarding World of Harry Potter - Diagon Alley,Hogwarts™ Express - Last Train,False,0
+2026-08-09T20:19,universal-studios,The Wizarding World of Harry Potter - Diagon Alley,Ollivanders™ Experience in Diagon Alley™,True,5
+2026-08-09T20:19,universal-studios,World Expo,Kang & Kodos' Twirl 'n' Hurl,False,0
+2026-08-09T20:19,universal-studios,World Expo,MEN IN BLACK™ Alien Attack!™,True,15
+2026-08-09T20:19,universal-studios,World Expo,MEN IN BLACK™ Alien Attack!™ Single Rider,True,0
+2026-08-09T20:19,universal-studios,World Expo,The Simpsons Ride™,True,30
+2026-08-09T20:19,islands-of-adventure,Jurassic Park,Camp Jurassic™,False,0
+2026-08-09T20:19,islands-of-adventure,Jurassic Park,Jurassic Park Discovery Center,False,0
+2026-08-09T20:19,islands-of-adventure,Jurassic Park,Jurassic Park River Adventure,False,0
+2026-08-09T20:19,islands-of-adventure,Jurassic Park,Jurassic World VelociCoaster,False,0
+2026-08-09T20:19,islands-of-adventure,Jurassic Park,Pteranodon Flyers,True,25
+2026-08-09T20:19,islands-of-adventure,Jurassic Park,Skull Island: Reign of Kong™,False,0
+2026-08-09T20:19,islands-of-adventure,Marvel Super Hero Island,Doctor Doom's Fearfall®,True,5
+2026-08-09T20:19,islands-of-adventure,Marvel Super Hero Island,Doctor Doom's Fearfall® Single Rider,True,0
+2026-08-09T20:19,islands-of-adventure,Marvel Super Hero Island,Storm Force Accelatron®,False,0
+2026-08-09T20:19,islands-of-adventure,Marvel Super Hero Island,The Amazing Adventures of Spider-Man®,True,20
+2026-08-09T20:19,islands-of-adventure,Marvel Super Hero Island,The Incredible Hulk Coaster®,True,10
+2026-08-09T20:19,islands-of-adventure,Marvel Super Hero Island,The Incredible Hulk Coaster® Single Rider,True,0
+2026-08-09T20:19,islands-of-adventure,Seuss Landing,Caro-Seuss-el™,True,5
+2026-08-09T20:19,islands-of-adventure,Seuss Landing,If I Ran The Zoo™,False,0
+2026-08-09T20:19,islands-of-adventure,Seuss Landing,"One Fish, Two Fish, Red Fish, Blue Fish™",True,5
+2026-08-09T20:19,islands-of-adventure,Seuss Landing,The Cat in The Hat™,True,20
+2026-08-09T20:19,islands-of-adventure,Seuss Landing,The High in the Sky Seuss Trolley Train Ride!™,True,5
+2026-08-09T20:19,islands-of-adventure,The Wizarding World of Harry Potter - Hogsmeade,Flight of the Hippogriff™,True,5
+2026-08-09T20:19,islands-of-adventure,The Wizarding World of Harry Potter - Hogsmeade,Hagrid's Magical Creatures Motorbike Adventure™,True,60
+2026-08-09T20:19,islands-of-adventure,The Wizarding World of Harry Potter - Hogsmeade,Harry Potter and the Forbidden Journey™,True,10
+2026-08-09T20:19,islands-of-adventure,The Wizarding World of Harry Potter - Hogsmeade,Harry Potter and the Forbidden Journey™ Single Rider,True,0
+2026-08-09T20:19,islands-of-adventure,The Wizarding World of Harry Potter - Hogsmeade,Hogwarts Express™ - Hogsmeade™ Station,True,10
+2026-08-09T20:19,islands-of-adventure,The Wizarding World of Harry Potter - Hogsmeade,Ollivanders™ Experience in Hogsmeade™,True,15
+2026-08-09T20:19,islands-of-adventure,Toon Lagoon,Dudley Do-Right's Ripsaw Falls®,True,15
+2026-08-09T20:19,islands-of-adventure,Toon Lagoon,"Me Ship, The Olive®",False,0
+2026-08-09T20:19,islands-of-adventure,Toon Lagoon,Popeye & Bluto's Bilge-Rat Barges®,False,0
+2026-08-09T20:19,epic-universe,Celestial Park,Constellation Carousel,True,25
+2026-08-09T20:19,epic-universe,Celestial Park,Stardust Racers,True,35
+2026-08-09T20:19,epic-universe,Dark Universe,Curse of the Werewolf,True,40
+2026-08-09T20:19,epic-universe,Dark Universe,Curse of the Werewolf Single Rider,True,0
+2026-08-09T20:19,epic-universe,Dark Universe,Monsters Unchained: The Frankenstein Experiment,True,20
+2026-08-09T20:19,epic-universe,How to Train Your Dragon — Isle of Berk,Dragon Racer's Rally,True,30
+2026-08-09T20:19,epic-universe,How to Train Your Dragon — Isle of Berk,Fyre Drill,True,10
+2026-08-09T20:19,epic-universe,How to Train Your Dragon — Isle of Berk,Hiccup's Wing Gliders,True,40
+2026-08-09T20:19,epic-universe,How to Train Your Dragon — Isle of Berk,Meet Toothless and Friends,True,45
+2026-08-09T20:19,epic-universe,SUPER NINTENDO WORLD,Bowser Jr. Challenge,True,10
+2026-08-09T20:19,epic-universe,SUPER NINTENDO WORLD,Mario Kart™: Bowser's Challenge,True,45
+2026-08-09T20:19,epic-universe,SUPER NINTENDO WORLD,Mario Kart™: Bowser's Challenge Single Rider,True,0
+2026-08-09T20:19,epic-universe,SUPER NINTENDO WORLD,Mine-Cart Madness™,True,90
+2026-08-09T20:19,epic-universe,SUPER NINTENDO WORLD,Mine-Cart Madness™ Single Rider,True,0
+2026-08-09T20:19,epic-universe,SUPER NINTENDO WORLD,Yoshi's Adventure™,True,20
+2026-08-09T20:19,epic-universe,The Wizarding World of Harry Potter — Ministry of Magic,Harry Potter and the Battle at the Ministry™,True,60
+2026-08-09T20:19,epic-universe,The Wizarding World of Harry Potter — Ministry of Magic,Harry Potter and the Battle at the Ministry™ Single Rider,True,0
+2026-08-09T20:19,magic-kingdom,,Meet Festive Disney Pals at Mickey’s Not-So-Scary Halloween Party,False,0
+2026-08-09T20:19,magic-kingdom,Adventureland,A Pirate's Adventure ~ Treasures of the Seven Seas,False,0
+2026-08-09T20:19,magic-kingdom,Adventureland,Jungle Cruise,True,35
+2026-08-09T20:19,magic-kingdom,Adventureland,Pirates of the Caribbean,True,10
+2026-08-09T20:19,magic-kingdom,Adventureland,Swiss Family Treehouse,True,5
+2026-08-09T20:19,magic-kingdom,Adventureland,The Magic Carpets of Aladdin,True,5
+2026-08-09T20:19,magic-kingdom,Adventureland,Walt Disney's Enchanted Tiki Room,True,10
+2026-08-09T20:19,magic-kingdom,Fantasyland,"""it's a small world""",True,5
+2026-08-09T20:19,magic-kingdom,Fantasyland,Casey Jr. Splash 'N' Soak Station,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Cinderella Castle,True,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Dumbo the Flying Elephant,True,25
+2026-08-09T20:19,magic-kingdom,Fantasyland,Enchanted Tales with Belle,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Mad Tea Party,True,5
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Ariel at Her Grotto,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Cinderella and a Visiting Princess at Princess Fairytale Hall,True,15
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Daring Disney Pals as Circus Stars at Pete's Silly Sideshow,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Dashing Disney Pals as Circus Stars at Pete's Silly Sideshow,False,0
+2026-08-09T20:19,magic-kingdom,Fantasyland,Meet Princess Tiana and a Visiting Princess at Princess Fairytale Hall,True,20
+2026-08-09T20:19,magic-kingdom,Fantasyland,Mickey's PhilharMagic,True,10
+2026-08-09T20:19,magic-kingdom,Fantasyland,Peter Pan's Flight,True,55
+2026-08-09T20:19,magic-kingdom,Fantasyland,Prince Charming Regal Carrousel,True,5
+2026-08-09T20:19,magic-kingdom,Fantasyland,Seven Dwarfs Mine Train,True,45
+2026-08-09T20:19,magic-kingdom,Fantasyland,The Barnstormer,True,10
+2026-08-09T20:19,magic-kingdom,Fantasyland,The Many Adventures of Winnie the Pooh,True,40
+2026-08-09T20:19,magic-kingdom,Fantasyland,Under the Sea - Journey of The Little Mermaid,True,10
+2026-08-09T20:19,magic-kingdom,Fantasyland,Walt Disney World Railroad - Fantasyland,True,15
+2026-08-09T20:19,magic-kingdom,Frontierland,Big Thunder Mountain Railroad,True,50
+2026-08-09T20:19,magic-kingdom,Frontierland,Country Bear Musical Jamboree,True,10
+2026-08-09T20:19,magic-kingdom,Frontierland,Tiana's Bayou Adventure,True,35
+2026-08-09T20:19,magic-kingdom,Liberty Square,Haunted Mansion,True,20
+2026-08-09T20:19,magic-kingdom,Liberty Square,The Hall of Presidents,True,15
+2026-08-09T20:19,magic-kingdom,"Main Street, U.S.A.",Main Street Vehicles,False,0
+2026-08-09T20:19,magic-kingdom,"Main Street, U.S.A.",Meet Mickey at Town Square Theater,True,15
+2026-08-09T20:19,magic-kingdom,"Main Street, U.S.A.","Walt Disney World Railroad - Main Street, U.S.A.",True,15
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Astro Orbiter,True,30
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Buzz Lightyear’s Space Ranger Spin,False,0
+2026-08-09T20:19,magic-kingdom,Tomorrowland,"Monsters, Inc. Laugh Floor",True,10
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Space Mountain,True,60
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Tomorrowland Speedway,True,20
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Tomorrowland Transit Authority PeopleMover,True,15
+2026-08-09T20:19,magic-kingdom,Tomorrowland,TRON Lightcycle / Run,True,75
+2026-08-09T20:19,magic-kingdom,Tomorrowland,Walt Disney's Carousel of Progress,False,0
+2026-08-09T20:19,magic-kingdom,Other,Meet Mickey Mouse and Minnie Mouse at Mickey's Not-So-Scary Halloween Party,False,0
