@@ -23,7 +23,7 @@ NOT in git (local-only, by design — see .gitignore): the `Gen Con/` archive (i
 
 **Desktop first-time setup** (run once on the desktop; Claude can drive all of it):
 1. `git clone https://github.com/tanneriscrypto-a11y/Trips` (needs `gh auth login` or stored GitHub creds)
-2. Get `Disney Universal/pushover_creds.json` from Tanner (gitignored on purpose — ask him to copy it in; format: `{"api_token": "...", "user_key": "..."}`)
+2. Restore secrets from Dropbox: `<Dropbox>\claude-handoff\secrets\` holds every repo's gitignored credential files with a `MANIFEST.md` of destinations — for this repo, copy `Trips/Disney Universal/pushover_creds.json` into place (on the laptop that was `C:\D\Dropbox`; find the desktop's Dropbox root via its Dropbox client)
 3. Verify: `python "Disney Universal\notify.py" "Test" "Desktop pipeline works"` → phone ping
 4. Run `python "Disney Universal\deal_watcher.py"` once manually (seeds its state baseline on this machine)
 5. Create the daily job below (schtasks or Task Scheduler GUI), then run `claude -p` once manually to confirm the whole check works end-to-end
