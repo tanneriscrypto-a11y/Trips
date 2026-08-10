@@ -17,7 +17,9 @@ Family vacation-planning workspace. One folder per trip; this is not a software 
 
 ## Cross-machine continuity
 
-This folder lives on Tanner's WSL laptop and is NOT currently synced anywhere (the "conflicted copy" files in Gen Con are Dropbox fossils from an earlier location). Cross-machine transfer to the always-on Windows desktop (native CLI): mechanism TBD — git (recommended) or Dropbox. Everything needed to resume work lives IN this folder — trip READMEs, `planning/` docs, bot scripts. Claude memory does NOT transfer between machines; if you lack context, read `Disney Universal/README.md` → `planning/MASTER-PLAN.md` first. Bots and their state/log files run on ONE machine only (the desktop) and their state/logs stay local to it.
+Synced via private git repo: **https://github.com/tanneriscrypto-a11y/Trips** (WSL laptop + always-on Windows desktop running native Claude Code CLI). Workflow: commit+push after planning sessions; the desktop's daily job should `git pull` before running. Claude memory does NOT transfer between machines; if you lack context, read `Disney Universal/README.md` → `planning/MASTER-PLAN.md` first.
+
+NOT in git (local-only, by design — see .gitignore): the `Gen Con/` archive (inline tokens, session dumps), all `*creds*` files, and bot state/logs (they belong to the one machine running the bots — the desktop). **`Disney Universal/pushover_creds.json` must be copied to the desktop manually once** (it contains the Pushover token/user key; values are also inline in `Gen Con/gencon_notifier.py` on this laptop if it ever needs recreating).
 
 **Desktop daily job** (Windows Task Scheduler, ~8:00 AM daily, from the Trips folder):
 ```

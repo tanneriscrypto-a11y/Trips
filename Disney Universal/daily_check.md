@@ -2,6 +2,8 @@
 
 You are running as a scheduled daily job on Tanner's always-on Windows desktop (native CLI, no WSL). Work from the `Trips/Disney Universal` folder. Context: `../CLAUDE.md`, `README.md`, `planning/MASTER-PLAN.md`. Trip: Jan 23–30, 2027 (Universal Jan 23–26 booked at Helios Grand; Disney Jan 26–30 — hunting an AKV Savanna View studio via DVC rental).
 
+**Step 0:** `git pull` in the Trips repo root first — planning updates from the laptop arrive via git.
+
 Do these four checks, in order. Send Pushover alerts ONLY for findings (rule at bottom) — a quiet day sends nothing.
 
 ## 1. Run the deal watcher
