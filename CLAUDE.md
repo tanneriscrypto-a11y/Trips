@@ -21,6 +21,14 @@ Synced via private git repo: **https://github.com/tanneriscrypto-a11y/Trips** (W
 
 NOT in git (local-only, by design — see .gitignore): the `Gen Con/` archive (inline tokens, session dumps), all `*creds*` files, and bot state/logs (they belong to the one machine running the bots — the desktop). **`Disney Universal/pushover_creds.json` must be copied to the desktop manually once** (it contains the Pushover token/user key; values are also inline in `Gen Con/gencon_notifier.py` on this laptop if it ever needs recreating).
 
+**Desktop first-time setup** (run once on the desktop; Claude can drive all of it):
+1. `git clone https://github.com/tanneriscrypto-a11y/Trips` (needs `gh auth login` or stored GitHub creds)
+2. Get `Disney Universal/pushover_creds.json` from Tanner (gitignored on purpose — ask him to copy it in; format: `{"api_token": "...", "user_key": "..."}`)
+3. Verify: `python "Disney Universal\notify.py" "Test" "Desktop pipeline works"` → phone ping
+4. Run `python "Disney Universal\deal_watcher.py"` once manually (seeds its state baseline on this machine)
+5. Create the daily job below (schtasks or Task Scheduler GUI), then run `claude -p` once manually to confirm the whole check works end-to-end
+6. Stop running bots on the laptop — the desktop owns them from here
+
 **Desktop daily job** (Windows Task Scheduler, ~8:00 AM daily, from the Trips folder):
 ```
 claude -p "Follow the instructions in 'Disney Universal/daily_check.md'"
