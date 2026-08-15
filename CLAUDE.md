@@ -26,14 +26,15 @@ NOT in git (local-only, by design — see .gitignore): the `Gen Con/` archive (i
 2. Restore secrets from Dropbox: `<Dropbox>\claude-handoff\secrets\` holds every repo's gitignored credential files with a `MANIFEST.md` of destinations — for this repo, copy `Trips/Disney Universal/pushover_creds.json` into place (on the laptop that was `C:\D\Dropbox`; find the desktop's Dropbox root via its Dropbox client)
 3. Verify: `python "Disney Universal\notify.py" "Test" "Desktop pipeline works"` → phone ping
 4. Run `python "Disney Universal\deal_watcher.py"` once manually (seeds its state baseline on this machine)
-5. Create the daily job below (schtasks or Task Scheduler GUI), then run `claude -p` once manually to confirm the whole check works end-to-end
-6. Stop running bots on the laptop — the desktop owns them from here
+5. Run `python "Disney Universal\dvc_watcher.py"` once manually (seeds the DVC per-night baseline), then create its Task Scheduler job: every **20 minutes**, `py.exe "...\Disney Universal\dvc_watcher.py"` from the Trips folder
+6. Create the daily job below (schtasks or Task Scheduler GUI), then run `claude -p` once manually to confirm the whole check works end-to-end
+7. Stop running bots on the laptop — the desktop owns them from here
 
 **Desktop daily job** (Windows Task Scheduler, ~8:00 AM daily, from the Trips folder):
 ```
 claude -p "Follow the instructions in 'Disney Universal/daily_check.md'"
 ```
-Requires on the desktop: Claude Code CLI with the Playwright plugin, Python 3 on PATH. The job runs `deal_watcher.py`, checks DVC inventory for the AKV savanna studio (Jan 26-30, 2027), re-shops the Helios rate, and Pushover-alerts findings only.
+Requires on the desktop: Claude Code CLI with the Playwright plugin, Python 3 on PATH. The job runs `deal_watcher.py`, verifies `dvc_watcher.py` is alive (the 20-min watcher owns the AKV savanna hunt for Jan 26-30, 2027), re-shops the Helios rate, and Pushover-alerts findings only.
 
 ## Tooling
 

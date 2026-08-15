@@ -14,20 +14,14 @@ python deal_watcher.py
 
 It handles its own Pushover alerts. If it errors, alert once with the error.
 
-## 2. DVC inventory check (needs INVENTORY_URL below)
+## 2. DVC watcher health check
 
-INVENTORY_URL: `https://dvcrentalstore.com/guests/check-dvc-availability/?checkIn=2027-01-26&checkOut=2027-01-30&occupancy=4`
+The DVC inventory hunt is now owned by **`dvc_watcher.py`**, which polls the per-night availability API every 20 minutes via its own Task Scheduler job and sends its own Pushover alerts (savanna block > savanna split > mixed split > standard ladder, edge-triggered — see its docstring). Your job here is only to verify it's alive:
 
-Open it with Playwright browser tools. Rows show per-room status (Available / Partial Availability / No Availability); clicking a row's status pill opens a per-night calendar (green=available, orange=limited, gray=none). Baseline Aug 9, 2026: AKV savanna studio had ONLY Jan 27 (limited) — everything AKV was partial; full-block studios existed only at Saratoga Springs (~$1,122). We are hunting cancellation churn. Check for **Jan 26–30, 2027**:
+1. Run `python dvc_watcher.py --status`. Healthy = last run within the past hour, fail streak 0.
+2. If state is missing, stale (>2 h), or fail streak > 0: run `python dvc_watcher.py` once manually. If that errors too, alert ("DVC watcher down: <one-line reason>") and fall back to the manual check below for today.
 
-1. First choice: Animal Kingdom Villas (Jambo or Kidani) **Deluxe Studio, Savanna View**, all 4 nights → if available, ALERT immediately (title "AKV SAVANNA AVAILABLE — act now").
-2. If not available as a block, check **resort-hop (split-stay) combinations**, best-first:
-   - AKV savanna studio Jambo ↔ Kidani split (any 2+2 or 1+3 covering all 4 nights) — easy hop, same resort grounds
-   - AKV savanna for ≥2 nights + another deluxe DVC studio for the rest (check: Wilderness Lodge/Copper Creek, Bay Lake Tower, Polynesian — all better MK access; any is a fine complement)
-   - AKV **Standard View** studio, 4 nights (fallback — lodge without the room view)
-3. Alert with the best available combination and its nightly breakdown. Track what you saw in `dvc_inventory_log.md` (append one dated line per run: best option seen). Only alert when TODAY'S best option is BETTER than the best previously logged (savanna block > savanna split > mixed split > standard) — improvements only, not repeats.
-
-Resort-hop judgment rule: a split is only worth proposing if it secures savanna-view nights that are otherwise unavailable. A move mid-stay with a 6-year-old costs real energy — 2 savanna nights justify it; a lateral move does not.
+**Manual fallback only** (when the watcher is down): open `https://dvcrentalstore.com/guests/availability/results/?checkIn=2027-01-26&checkOut=2027-01-30` with Playwright. Hunting an AKV (Jambo/Kidani) **Deluxe Studio, Savanna View** for Jan 26–30; fallback ladder: savanna 4-night block > Jambo↔Kidani savanna split > savanna ≥2 nights + deluxe studio complement (Copper Creek/Boulder Ridge, Bay Lake Tower, Polynesian) > AKV standard studio block. A mid-stay move with a 6-year-old costs real energy — 2 savanna nights justify it; a lateral move does not. Log findings in `dvc_inventory_log.md`; alert improvements only.
 
 ## 3. Helios rate re-shop
 

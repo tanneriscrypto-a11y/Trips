@@ -20,7 +20,7 @@ Status: **research complete, awaiting decisions** (2026-08-09). See `planning/MA
 |---|---|---|
 | Measure River; confirm friends in/out | ASAP | ☐ |
 | Universal hotel: **Helios Grand booked** — $471.33/nt × 3 (3 guests). If Scottie confirms: modify reservation to 4 guests (EPA requires registered guests); re-shop if winter promo drops | Done 2026-08-09 | ☑ |
-| Disney hotel — **AKV Savanna Studio: NO availability as of 2026-08-09** (only Jan 27 "limited"; all AKV categories partial; DVC Rental Store request declined). **Hunting cancellation churn via daily bot** + their confirmed-listing email alerts. Decision point ~Nov 1: if still nothing, book Caribbean Beach cash fallback (~$1,405 rack, less w/ fall discount) | Bot running; decide Nov 1 | ☐ |
+| Disney hotel — **AKV Savanna Studio: NO availability as of 2026-08-09** (only Jan 27 "limited"; all AKV categories partial; DVC Rental Store request declined). **Hunting cancellation churn via `dvc_watcher.py` (polls every 20 min)** + their confirmed-listing email alerts. Decision point ~Nov 1: if still nothing, book Caribbean Beach cash fallback (~$1,405 rack, less w/ fall discount) | Bot running; decide Nov 1 | ☐ |
 | Universal 3-day park-to-park tickets (reseller; watch 2027 promos) | ~Oct–Nov | ☐ |
 | Disney 4-day + Hopper tickets (reseller) | ~Nov | ☐ |
 | **Disney ADRs** (Tusker House Thu lunch, Chef Mickey's Fri dinner) | **Nov 27, 2026, 5:45 a.m. ET** | ☐ |
@@ -30,6 +30,7 @@ Status: **research complete, awaiting decisions** (2026-08-09). See `planning/MA
 
 ## Bots
 
+- `dvc_watcher.py` — **the AKV savanna hunt.** Polls the per-night DVC availability API that dvcrentalstore.com's own frontend uses (`api.keyholdervacations.com/v2/dvc/availability/calendar/<ROOM-ID>`; values `none`/`low`/`high`; discovered 2026-08-14, no auth needed) for 9 studio room types, every 20 min via Task Scheduler on the desktop. Assembles best available option on the ladder savanna block > Jambo↔Kidani savanna split > savanna ≥2 nights + deluxe complement > AKV standard block, and Pushover-alerts only on improvements or newly opened savanna nights (edge-triggered, no repeats). `--status` shows the live per-room/night grid; `--selftest` checks the solver; `--dry`/`--test` as usual. State/log/`dvc_inventory_log.md` beside it, desktop-only.
 - `deal_watcher.py` — daily promo/deal watcher → Pushover. Watches: 4 blog RSS feeds for ticket/room promo announcements, 5 deal pages for changes (MouseSavers ×3, Disney special offers, Universal tickets), 3 DVC listing pages for AKV savanna studios. State/log beside it. **Run on the always-on desktop only** (state/logs live beside the script and belong to one machine): Task Scheduler, daily. `--test` sends a pipeline-check push; `--dry` prints instead of pushing.
 
 ## Working files
