@@ -4,16 +4,6 @@ You are running as a scheduled daily job on Tanner's always-on Windows desktop (
 
 **Step 0:** `git pull` in the Trips repo root first — planning updates from the laptop arrive via git.
 
-**Step 0.5 — ONE-TIME: install the DVC watcher schedule** (delete this section once it succeeds). If a Task Scheduler task named `DVC Watcher` does not already exist (`schtasks /query /tn "DVC Watcher"` errors):
-
-1. Run `python dvc_watcher.py` once from this folder (seeds its per-night baseline; first run sends no alerts).
-2. Create the task: every **20 minutes**, indefinitely, running `dvc_watcher.py` with this machine's Python — e.g. `schtasks /create /tn "DVC Watcher" /sc minute /mo 20 /tr "<python.exe> \"<full path>\dvc_watcher.py\"" /f` (resolve the real python path with `where python`; working directory doesn't matter, the script uses paths relative to itself).
-3. Verify: `schtasks /query /tn "DVC Watcher"` succeeds and `python dvc_watcher.py --status` shows a recent run.
-4. Send ONE Pushover alert: `python notify.py "DVC watcher installed" "Desktop now polls DVC availability every 20 min for Jan 26-30."` — this confirms remotely that setup worked.
-5. Delete this Step 0.5 section from this file, then `git commit -am "Desktop: DVC watcher installed"` and `git push` so the laptop knows it's done.
-
-If any part fails, alert once with the error and leave this section in place for tomorrow's run. Also: a temporary interim watcher may have been running on the laptop until this installs — duplicate alerts during the overlap are expected and harmless.
-
 Do these four checks, in order. Send Pushover alerts ONLY for findings (rule at bottom) — a quiet day sends nothing.
 
 ## 1. Run the deal watcher
