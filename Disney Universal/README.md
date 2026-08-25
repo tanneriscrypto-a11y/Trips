@@ -20,8 +20,7 @@ Status: **research complete, awaiting decisions** (2026-08-09). See `planning/MA
 |---|---|---|
 | Measure River; confirm friends in/out | ASAP | ☐ |
 | Universal hotel: **Helios Grand booked** — $471.33/nt × 3 (3 guests). If Scottie confirms: modify reservation to 4 guests (EPA requires registered guests); re-shop if winter promo drops | Done 2026-08-09 | ☑ |
-| Disney hotel, front half — **Kidani Savanna Studio Jan 26–28 REQUESTED** via DVC Rental Store (ARF-217165, $714 / 28 pts; $100 deposit paid 8/24; awaiting member match → then $131 + e-sign within 24h of reservation number; balance ~Nov 12) | Watch email daily | ◐ |
-| Disney hotel, back half (Jan 28–30) — `dvc_watcher.py` hunts nights 28+29: Kidani savanna extension > any savanna > deluxe studio block (incl. Beach Club, BoardWalk, BLT, Poly, GF, Riviera). Decision point ~Nov 1: if no DVC, book Caribbean Beach cash fallback (~2 nights, refundable) | Bot running; decide Nov 1 | ☐ |
+| Disney hotel — **Kidani savanna Jan 26–28 was claimed out from under ARF-217165** (8/25, before a member could book; $100 deposit stays with DVC Rental Store against the revised request: AKV savanna studio, either building, Jan 26–28 — they offered Saratoga instead, declined). `dvc_watcher.py` hunts the full window (savanna block > savanna split > savanna+complement > any deluxe 4-night block, incl. Beach Club, BoardWalk, BLT, Poly, GF, Riviera). If a member secures the revised request: $131 + e-sign within 24h of the reservation number. Decision point ~Nov 1: book Caribbean Beach cash fallback (refundable) for whatever's uncovered | Bot running; watch email; decide Nov 1 | ☐ |
 | Universal 3-day park-to-park tickets (reseller; watch 2027 promos) | ~Oct–Nov | ☐ |
 | Disney 4-day + Hopper tickets (reseller) | ~Nov | ☐ |
 | **Disney ADRs** (Tusker House Thu lunch, Chef Mickey's Fri dinner) | **Nov 27, 2026, 5:45 a.m. ET** | ☐ |

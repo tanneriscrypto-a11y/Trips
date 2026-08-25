@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-"""DVC availability watcher for the Jan 2027 Disney stay — BACK-HALF hunt (Jan 28-30).
+"""DVC availability watcher for the Jan 2027 Disney stay (Jan 26-30, AKV savanna hunt).
 
-Front half is committed: Kidani savanna studio Jan 26-28 requested via DVC Rental
-Store (ARF-217165, $100 deposit paid 2026-08-24). This watcher now hunts the
-remaining two nights (Jan 28 and 29). Cash fallback: Caribbean Beach, decide Nov 1.
+History: Kidani savanna Jan 26-28 was requested 8/24 (ARF-217165) but availability
+was claimed before a member could book it (8/25). The broker request stays open for
+AKV savanna; this watcher hunts the FULL window again. Cash fallback: Caribbean
+Beach for uncovered nights, decide Nov 1.
 
 Polls the per-night availability API that dvcrentalstore.com's own frontend uses
-(api.keyholdervacations.com, discovered 2026-08-14) for a small set of studio room
-types, diffs against saved state, and Pushover-alerts only on improvements:
+(api.keyholdervacations.com, discovered 2026-08-14) for ~20 studio room types,
+diffs against saved state, and Pushover-alerts only on improvements:
 
-  Level 5  Kidani savanna, both nights — extension, NO hotel move   -> CRITICAL
-  Level 4  savanna (Jambo or mixed) covers both nights              -> CRITICAL
-  Level 3  any other watched deluxe studio, both nights (one move)  -> alert
-  Level 2  Kidani savanna, exactly one night (1-night extension)    -> alert
-  Level 1  some savanna night open (no assembly)                    -> alert on newly
+  Level 5  savanna studio (Jambo or Kidani), all 4 nights           -> CRITICAL
+  Level 4  savanna nights across Jambo+Kidani cover all 4 nights    -> CRITICAL
+  Level 3  savanna run of >=2 nights + one complement studio rest   -> alert
+  Level 2  any watched complement studio, all 4 nights              -> alert
+  Level 1  some savanna night(s) open (no full assembly)            -> alert on newly
                                                                        opened nights only
 Alerts are edge-triggered (level rises vs. previous run, or a savanna night flips
 closed->open), so unchanged inventory never re-alerts. If savanna inventory vanishes
@@ -53,19 +54,15 @@ CREDS_FILE = HERE / "pushover_creds.json"
 INVENTORY_LOG = HERE / "dvc_inventory_log.md"
 
 # --- Trip config ---------------------------------------------------------
-# Back half only: nights of Jan 28 and 29 (front half Jan 26-28 is committed).
-CHECK_IN = date(2027, 1, 28)
+CHECK_IN = date(2027, 1, 26)
 CHECK_OUT = date(2027, 1, 30)
 NIGHTS = [(CHECK_IN + timedelta(days=i)).isoformat()
           for i in range((CHECK_OUT - CHECK_IN).days)]
 
-# The room the front-half reservation is in — both nights here = pure extension.
-EXTENSION_ROOM = "AKK-STU-SAV"
-
-# Rooms to watch. group: savanna = keeps the view (Kidani = no move at all);
-# complement = acceptable deluxe studio for the back half (BLT/Poly/CC/BRV have
-# better MK access for the Fri MK day; AKV std keeps the lodge; SSR/Riviera are
-# weighed against the Caribbean Beach cash fallback).
+# Rooms to watch. group: savanna = the target; complement = deluxe studio Tanner
+# would enjoy for part (or, at level 2, all) of the stay — BLT/Poly/CC/BRV have
+# better MK access, BCV/BWV walk to EPCOT, AKV std keeps the lodge, SSR/Riviera
+# are weighed against the Caribbean Beach cash fallback.
 ROOMS = {
     "AKK-STU-SAV": {"label": "AKV Kidani Savanna Studio", "group": "savanna"},
     "AKV-STU-SAV": {"label": "AKV Jambo Savanna Studio", "group": "savanna"},
@@ -187,35 +184,40 @@ def assemble_savanna_split(rooms):
 
 
 def evaluate(rooms):
-    """Return (level, description) for the best back-half option in current inventory."""
-    if full_block(rooms, EXTENSION_ROOM):
-        return 5, (f"{ROOMS[EXTENSION_ROOM]['label']} — BOTH NIGHTS ({fmt_run(NIGHTS)}): "
-                   "extend the existing reservation, zero hotel moves")
+    """Return (level, description) for the best assembly in current inventory."""
     for r in by_group("savanna"):
         if full_block(rooms, r):
-            return 4, f"{ROOMS[r]['label']} — both nights ({fmt_run(NIGHTS)})"
+            return 5, f"{ROOMS[r]['label']} — ALL 4 NIGHTS ({fmt_run(NIGHTS)})"
     split = assemble_savanna_split(rooms)
     if split:
-        return 4, f"Savanna covers both nights: {split}"
+        return 4, f"Savanna split covers all 4 nights: {split}"
+    for k in (3, 2):
+        for r in by_group("savanna"):
+            if all(is_open(rooms, r, n) for n in NIGHTS[:k]):
+                for c in by_group("complement"):
+                    if all(is_open(rooms, c, n) for n in NIGHTS[k:]):
+                        return 3, (f"{ROOMS[r]['label']} {fmt_run(NIGHTS[:k])}, "
+                                   f"then {ROOMS[c]['label']} {fmt_run(NIGHTS[k:])}")
+            if all(is_open(rooms, r, n) for n in NIGHTS[-k:]):
+                for c in by_group("complement"):
+                    if all(is_open(rooms, c, n) for n in NIGHTS[:-k]):
+                        return 3, (f"{ROOMS[c]['label']} {fmt_run(NIGHTS[:-k])}, "
+                                   f"then {ROOMS[r]['label']} {fmt_run(NIGHTS[-k:])}")
     for c in by_group("complement"):
         if full_block(rooms, c):
-            return 3, f"{ROOMS[c]['label']} — both nights ({fmt_run(NIGHTS)}), one move"
-    ext_nights = [n for n in NIGHTS if is_open(rooms, EXTENSION_ROOM, n)]
-    if ext_nights:
-        return 2, (f"{ROOMS[EXTENSION_ROOM]['label']} open {fmt(ext_nights[0])} only — "
-                   "1-night extension possible")
+            return 2, f"{ROOMS[c]['label']} — all 4 nights ({fmt_run(NIGHTS)}), no split needed"
     open_sav = [(r, n) for r in by_group("savanna") for n in NIGHTS if is_open(rooms, r, n)]
     if open_sav:
         detail = "; ".join(f"{ROOMS[r]['label']} {fmt(n)}" for r, n in open_sav)
-        return 1, f"Savanna night open (no assembly): {detail}"
+        return 1, f"Savanna nights open (no full assembly): {detail}"
     return 0, "No target availability"
 
 
 LEVEL_ALERTS = {  # level: (title, pushover priority)
-    5: ("KIDANI EXTENSION OPEN — act now", 1),
-    4: ("Savanna covers the back half", 1),
-    3: ("Back-half deluxe studio available", 0),
-    2: ("Kidani 1-night extension open", 0),
+    5: ("AKV SAVANNA AVAILABLE — act now", 1),
+    4: ("AKV savanna split — all 4 nights", 1),
+    3: ("Savanna split-stay possible", 0),
+    2: ("Deluxe studio 4-night block available", 0),
 }
 
 
@@ -243,6 +245,7 @@ def load_state():
             state["nights"] = NIGHTS
             state["last_level"] = 0
             state["best_level"] = 0
+            state["retargeted"] = True  # suppress transition alerts one cycle
         return state
     return {"rooms": {}, "nights": NIGHTS, "last_level": 0, "best_level": 0,
             "fail_streak": 0, "fail_alerted": False,
@@ -323,6 +326,10 @@ def run_cycle(dry=False):
     rooms = merged
     level, desc = evaluate(rooms)
     openings = [] if first_run else savanna_openings(old_rooms, rooms)
+    if state.pop("retargeted", False):
+        # Nights not in the old window would all read "newly opened"; a level
+        # rise still alerts, but per-night transition noise is suppressed once.
+        openings = []
 
     alerted = False
     if not first_run and level > state["last_level"] and level in LEVEL_ALERTS:
@@ -369,17 +376,17 @@ def selftest():
     def rooms_with(spec):
         return {rid: {n: ("low" if n in spec.get(rid, []) else "none")
                       for n in NIGHTS} for rid in ROOMS}
-    n1, n2 = NIGHTS
+    n1, n2, n3, n4 = NIGHTS
     cases = [
-        ("kidani extension, both nights", {"AKK-STU-SAV": NIGHTS}, 5),
-        ("jambo savanna, both nights", {"AKV-STU-SAV": NIGHTS}, 4),
-        ("mixed savanna 1+1", {"AKK-STU-SAV": [n1], "AKV-STU-SAV": [n2]}, 4),
-        ("complement both nights", {"BLT-STU-STD": NIGHTS}, 3),
-        ("akv standard both nights", {"AKV-STU-VAL": NIGHTS}, 3),
-        ("kidani 1-night extension", {"AKK-STU-SAV": [n1]}, 2),
-        ("kidani night 2 only", {"AKK-STU-SAV": [n2]}, 2),
-        ("jambo single night", {"AKV-STU-SAV": [n2]}, 1),
-        ("complement single night only", {"SS-STU-STD": [n2]}, 0),
+        ("savanna full block", {"AKK-STU-SAV": NIGHTS}, 5),
+        ("savanna 2+2 split", {"AKK-STU-SAV": [n1, n2], "AKV-STU-SAV": [n3, n4]}, 4),
+        ("savanna 1+3 split", {"AKV-STU-SAV": [n1], "AKK-STU-SAV": [n2, n3, n4]}, 4),
+        ("savanna 2 + complement 2", {"AKK-STU-SAV": [n1, n2], "CCV-STU-STD": [n3, n4]}, 3),
+        ("complement 2 + savanna 2", {"BLT-STU-STD": [n1, n2], "AKV-STU-SAV": [n3, n4]}, 3),
+        ("savanna 1 + complement 3 (below min run)", {"AKK-STU-SAV": [n1], "CCV-STU-STD": [n2, n3, n4]}, 1),
+        ("akv standard block", {"AKV-STU-VAL": NIGHTS}, 2),
+        ("beach club block", {"BCV-STU-STD": NIGHTS}, 2),
+        ("partial savanna only", {"AKK-STU-SAV": [n2]}, 1),
         ("nothing", {}, 0),
     ]
     failures = 0
