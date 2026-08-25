@@ -26,7 +26,7 @@ NOT in git (local-only, by design — see .gitignore): the `Gen Con/` archive (i
 2. Restore secrets from Dropbox: `<Dropbox>\claude-handoff\secrets\` holds every repo's gitignored credential files with a `MANIFEST.md` of destinations — for this repo, copy `Trips/Disney Universal/pushover_creds.json` into place (on the laptop that was `C:\D\Dropbox`; find the desktop's Dropbox root via its Dropbox client)
 3. Verify: `python "Disney Universal\notify.py" "Test" "Desktop pipeline works"` → phone ping
 4. Run `python "Disney Universal\deal_watcher.py"` once manually (seeds its state baseline on this machine)
-5. Run `python "Disney Universal\dvc_watcher.py"` once manually (seeds the DVC per-night baseline), then create its Task Scheduler job: every **20 minutes**, `py.exe "...\Disney Universal\dvc_watcher.py"` from the Trips folder
+5. Run `python "Disney Universal\dvc_watcher.py"` once manually (seeds the DVC per-night baseline), then create its Task Scheduler job: every **5 minutes**, `py.exe "...\Disney Universal\dvc_watcher.py"` from the Trips folder (the script tiers its own requests: fast rooms every cycle, the rest every 4th)
 6. Create the daily job below (schtasks or Task Scheduler GUI), then run `claude -p` once manually to confirm the whole check works end-to-end
 7. Stop running bots on the laptop — the desktop owns them from here
 

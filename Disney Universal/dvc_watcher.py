@@ -37,9 +37,11 @@ Usage:
   dvc_watcher.py --test      send a test Pushover notification and exit
 
 Schedule on the always-on desktop ONLY (state/log belong to one machine):
-  Task Scheduler: py.exe "C:\\...\\Disney Universal\\dvc_watcher.py", every 20 min
+  Task Scheduler: py.exe "C:\\...\\Disney Universal\\dvc_watcher.py", every 5 min
   (or run once with --watch inside a persistent session)
-Be polite: ~9 tiny GETs per cycle, jittered, with 60-min backoff on 429/5xx.
+Tiered polling keeps it polite: the race-deciding rooms (savanna + Poly) are
+fetched every cycle (5 min); the rest only every 4th cycle (~20 min). Tiny GETs,
+jittered spacing, 60-min backoff on 429/5xx.
 """
 import json
 import logging
@@ -110,10 +112,11 @@ API = "https://api.keyholdervacations.com/v2/dvc/availability/calendar/"
 RESULTS_URL = ("https://dvcrentalstore.com/guests/availability/results/"
                f"?checkIn={CHECK_IN.isoformat()}&checkOut={CHECK_OUT.isoformat()}")
 
-POLL_MINUTES = 20
+POLL_MINUTES = 5           # fast tier: savanna + Poly rooms, every cycle
+SLOW_EVERY = 4             # everything else only every 4th cycle (~20 min)
 JITTER_SECONDS = 30
 BACKOFF_MINUTES = 60       # after a 429/5xx, sit out this long
-FAIL_ALERT_AFTER = 9       # consecutive all-failed cycles (~3 h) before one error alert
+FAIL_ALERT_AFTER = 24      # consecutive all-failed cycles (~2 h) before one error alert
 
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36"}
 
@@ -148,10 +151,18 @@ def fetch_room(room_id):
     return {n: cal.get(n, {}).get("availability", "none") for n in NIGHTS}
 
 
-def fetch_all():
-    """Fetch every watched room. Returns (rooms, errors, backoff_hit)."""
+def fast_rooms():
+    """The race-deciding rooms, polled every cycle: savanna group + Poly studios."""
+    return set(by_group("savanna")) | set(POLY_ROOMS)
+
+
+def fetch_all(cycle=0):
+    """Fetch watched rooms for this cycle (slow-tier rooms only every SLOW_EVERY).
+    Returns (rooms, errors, backoff_hit)."""
+    fast = fast_rooms()
+    targets = [r for r in ROOMS if r in fast or cycle % SLOW_EVERY == 0]
     rooms, errors, backoff_hit = {}, [], False
-    for room_id in ROOMS:
+    for room_id in targets:
         for attempt in (1, 2):
             try:
                 rooms[room_id] = fetch_room(room_id)
@@ -331,7 +342,9 @@ def run_cycle(dry=False):
             return
         state["backoff_until"] = None
 
-    rooms, errors, backoff_hit = fetch_all()
+    cycle = state.get("cycle", 0)
+    state["cycle"] = cycle + 1
+    rooms, errors, backoff_hit = fetch_all(cycle)
 
     if backoff_hit:
         state["backoff_until"] = (datetime.now() + timedelta(minutes=BACKOFF_MINUTES)).isoformat()
