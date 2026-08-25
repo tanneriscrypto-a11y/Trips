@@ -6,6 +6,11 @@ was claimed before a member could book it (8/25). The broker request stays open 
 AKV savanna; this watcher hunts the FULL window again. Cash fallback: Caribbean
 Beach for uncovered nights, decide Nov 1.
 
+Tanner's chosen dream split (8/26): AKV savanna Jan 26-28 + POLYNESIAN Jan 28-30.
+A Polynesian studio opening for both back-half nights gets its own edge-triggered
+high-priority alert (independent of the ladder), and Poly ranks first among
+complements in split descriptions.
+
 Polls the per-night availability API that dvcrentalstore.com's own frontend uses
 (api.keyholdervacations.com, discovered 2026-08-14) for ~20 studio room types,
 diffs against saved state, and Pushover-alerts only on improvements:
@@ -66,13 +71,15 @@ NIGHTS = [(CHECK_IN + timedelta(days=i)).isoformat()
 ROOMS = {
     "AKK-STU-SAV": {"label": "AKV Kidani Savanna Studio", "group": "savanna"},
     "AKV-STU-SAV": {"label": "AKV Jambo Savanna Studio", "group": "savanna"},
+    # Poly first among complements: it's the chosen back-half target.
+    "POL-STU-STD": {"label": "Polynesian Studio", "group": "complement"},
+    "POL-STU-PRE": {"label": "Polynesian Preferred Studio", "group": "complement"},
     "AKK-STU-STD": {"label": "AKV Kidani Standard Studio", "group": "complement"},
     "AKV-STU-STD": {"label": "AKV Jambo Standard Studio", "group": "complement"},
     "AKV-STU-VAL": {"label": "AKV Jambo Value Studio", "group": "complement"},
     "CCV-STU-STD": {"label": "Copper Creek Studio", "group": "complement"},
     "BRV-STU-STD": {"label": "Boulder Ridge Studio", "group": "complement"},
     "BLT-STU-STD": {"label": "Bay Lake Tower Studio", "group": "complement"},
-    "POL-STU-STD": {"label": "Polynesian Studio", "group": "complement"},
     "SS-STU-STD": {"label": "Saratoga Springs Studio", "group": "complement"},
     "RR-STU-STD": {"label": "Riviera Studio", "group": "complement"},
     "RR-STU-PRE": {"label": "Riviera Preferred Studio", "group": "complement"},
@@ -81,7 +88,6 @@ ROOMS = {
     "BWV-STU-POOL": {"label": "BoardWalk Garden/Pool Studio", "group": "complement"},
     "BLT-STU-PRE": {"label": "Bay Lake Tower Preferred Studio", "group": "complement"},
     "BLT-STU-TP": {"label": "Bay Lake Tower Theme Park Studio", "group": "complement"},
-    "POL-STU-PRE": {"label": "Polynesian Preferred Studio", "group": "complement"},
     "GFV-STU-STD": {"label": "Grand Floridian Deluxe Studio", "group": "complement"},
     "GFV-RSTU-STD": {"label": "Grand Floridian Resort Studio", "group": "complement"},
 }
@@ -221,6 +227,19 @@ LEVEL_ALERTS = {  # level: (title, pushover priority)
 }
 
 
+# The decided back half: Polynesian for the last two nights (Jan 28, 29).
+POLY_ROOMS = ["POL-STU-STD", "POL-STU-PRE"]
+BACK_NIGHTS = NIGHTS[-2:]
+
+
+def poly_back_half(rooms):
+    """Room id of a Polynesian studio open for both back-half nights, else None."""
+    for r in POLY_ROOMS:
+        if all(is_open(rooms, r, n) for n in BACK_NIGHTS):
+            return r
+    return None
+
+
 def savanna_openings(old_rooms, new_rooms):
     """Savanna nights that flipped closed->open since last run."""
     out = []
@@ -331,6 +350,18 @@ def run_cycle(dry=False):
         # rise still alerts, but per-night transition noise is suppressed once.
         openings = []
 
+    # Dedicated alert for the chosen back half: Poly open for both last nights.
+    # Edge-triggered via its own state flag, independent of the ladder level.
+    poly_room = poly_back_half(rooms)
+    if poly_room and not state.get("poly_back_open") and not first_run:
+        pushover("POLYNESIAN BACK HALF OPEN — act now",
+                 f"{ROOMS[poly_room]['label']} available {fmt_run(BACK_NIGHTS)} — "
+                 "the chosen back-half nights. Revise/add the broker request.",
+                 RESULTS_URL, 1, dry)
+    if not poly_room and state.get("poly_back_open"):
+        logging.info("poly back half closed again")
+    state["poly_back_open"] = bool(poly_room)
+
     alerted = False
     if not first_run and level > state["last_level"] and level in LEVEL_ALERTS:
         title, priority = LEVEL_ALERTS[level]
@@ -389,6 +420,12 @@ def selftest():
         ("partial savanna only", {"AKK-STU-SAV": [n2]}, 1),
         ("nothing", {}, 0),
     ]
+    poly_checks = [
+        ("poly back half open", {"POL-STU-STD": [n3, n4]}, "POL-STU-STD"),
+        ("poly preferred back half", {"POL-STU-PRE": [n3, n4, n2]}, "POL-STU-PRE"),
+        ("poly one night only", {"POL-STU-STD": [n3]}, None),
+        ("poly wrong nights", {"POL-STU-STD": [n1, n2]}, None),
+    ]
     failures = 0
     for name, spec, want in cases:
         got, desc = evaluate(rooms_with(spec))
@@ -396,6 +433,12 @@ def selftest():
         if got != want:
             failures += 1
         print(f"{ok} {name}: level {got} (want {want}) — {desc}")
+    for name, spec, want in poly_checks:
+        got = poly_back_half(rooms_with(spec))
+        ok = "ok " if got == want else "FAIL"
+        if got != want:
+            failures += 1
+        print(f"{ok} {name}: {got} (want {want})")
     print("openings diff:",
           savanna_openings(rooms_with({}), rooms_with({"AKK-STU-SAV": [n1]})))
     sys.exit(1 if failures else 0)

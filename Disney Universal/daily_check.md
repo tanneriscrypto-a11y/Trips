@@ -1,6 +1,6 @@
 # Daily trip check — instructions for scheduled Claude run
 
-You are running as a scheduled daily job on Tanner's always-on Windows desktop (native CLI, no WSL). Work from the `Trips/Disney Universal` folder. Context: `../CLAUDE.md`, `README.md`, `planning/MASTER-PLAN.md`. Trip: Jan 23–30, 2027 (Universal Jan 23–26 booked at Helios Grand; Disney Jan 26–30 — hunting an AKV Savanna View studio. A Kidani savanna Jan 26–28 request was claimed away 8/25 before a member booked it; the DVC Rental Store request ARF-217165 stays open ($100 deposit held) for AKV savanna, either building, and they'll act if it reappears. Caribbean Beach cash fallback decision Nov 1).
+You are running as a scheduled daily job on Tanner's always-on Windows desktop (native CLI, no WSL). Work from the `Trips/Disney Universal` folder. Context: `../CLAUDE.md`, `README.md`, `planning/MASTER-PLAN.md`. Trip: Jan 23–30, 2027 (Universal Jan 23–26 booked at Helios Grand; Disney Jan 26–30 — **target split: AKV Savanna View studio Jan 26–28 + Polynesian studio Jan 28–30**. DVC Rental Store request ARF-217165 open ($100 held) for the AKV savanna leg — Kidani was claimed away 8/25 before a member booked it. Poly leg currently closed; the watcher alerts when it opens. Caribbean Beach cash fallback decision Nov 1).
 
 **Step 0:** `git pull` in the Trips repo root first — planning updates from the laptop arrive via git.
 
