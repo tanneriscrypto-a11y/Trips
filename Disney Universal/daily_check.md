@@ -20,6 +20,7 @@ The DVC hunt is owned by **`dvc_watcher.py`**, which polls the per-night availab
 
 1. Run `python dvc_watcher.py --status`. Healthy = last run within the past hour, fail streak 0.
 2. If state is missing, stale (>2 h), or fail streak > 0: run `python dvc_watcher.py` once manually. If that errors too, alert ("DVC watcher down: <one-line reason>") and fall back to the manual check below for today.
+3. **Fallback-shrinking check:** the reference rooms (OKW-1BR-STD, RR-1BR-STD, SS-1BR-STD) are the book-anytime full-block fallbacks (all 4 nights open as of 8/26). In the `--status` grid, if any of them no longer covers all 4 nights, alert once ("1BR fallback shrinking: <room> lost <night>") — that's the signal to stop waiting and book. Track in `dvc_inventory_log.md` to avoid repeats.
 
 **Manual fallback only** (when the watcher is down): open `https://dvcrentalstore.com/guests/availability/results/?checkIn=2027-01-26&checkOut=2027-01-30` with Playwright. Hunting an AKV (Jambo/Kidani) **Deluxe Studio, Savanna View** for Jan 26–30; ladder: savanna block > savanna split > savanna ≥2 nights + deluxe complement (Copper Creek/Boulder Ridge, BLT, Poly, Beach Club, BoardWalk, GF, Riviera, AKV standard) > any deluxe 4-night block. A mid-stay move with a 6-year-old costs real energy — 2 savanna nights justify it; a lateral move does not. Log findings in `dvc_inventory_log.md`; alert improvements only.
 

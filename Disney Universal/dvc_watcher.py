@@ -71,6 +71,10 @@ NIGHTS = [(CHECK_IN + timedelta(days=i)).isoformat()
 ROOMS = {
     "AKK-STU-SAV": {"label": "AKV Kidani Savanna Studio", "group": "savanna"},
     "AKV-STU-SAV": {"label": "AKV Jambo Savanna Studio", "group": "savanna"},
+    # Savanna 1BRs: the view with more space, at roughly double the studio price
+    # (~$2,921/4 nights vs $1,364) — alert-worthy, Tanner judges the price.
+    "AKK-1BR-SAV": {"label": "AKV Kidani Savanna 1BR", "group": "savanna"},
+    "AKV-1BR-SAV": {"label": "AKV Jambo Savanna 1BR", "group": "savanna"},
     # Poly first among complements: it's the chosen back-half target.
     "POL-STU-STD": {"label": "Polynesian Studio", "group": "complement"},
     "POL-STU-PRE": {"label": "Polynesian Preferred Studio", "group": "complement"},
@@ -90,6 +94,16 @@ ROOMS = {
     "BLT-STU-TP": {"label": "Bay Lake Tower Theme Park Studio", "group": "complement"},
     "GFV-STU-STD": {"label": "Grand Floridian Deluxe Studio", "group": "complement"},
     "GFV-RSTU-STD": {"label": "Grand Floridian Resort Studio", "group": "complement"},
+    # 1BR tier (sleeps 4-5, full kitchen + laundry; discovered via broker 8/26 —
+    # first rooms ever seen open on the Jan 28 wall night). Scarce ones alert as
+    # complements; the steadily-available ones are "reference" — fetched and shown
+    # in --status as the book-anytime fallback, but never alerted (they'd saturate
+    # the ladder). daily_check watches for reference blocks DISAPPEARING.
+    "CCV-1BR-STD": {"label": "Copper Creek 1BR", "group": "complement"},
+    "AKV-1BR-VAL": {"label": "AKV Jambo Value 1BR", "group": "complement"},
+    "OKW-1BR-STD": {"label": "Old Key West 1BR", "group": "reference"},
+    "RR-1BR-STD": {"label": "Riviera 1BR", "group": "reference"},
+    "SS-1BR-STD": {"label": "Saratoga Springs 1BR", "group": "reference"},
 }
 
 API = "https://api.keyholdervacations.com/v2/dvc/availability/calendar/"
@@ -244,6 +258,8 @@ def savanna_openings(old_rooms, new_rooms):
     """Savanna nights that flipped closed->open since last run."""
     out = []
     for r in by_group("savanna"):
+        if r not in old_rooms:
+            continue  # newly watched room: seed silently, diff from next cycle
         for n in NIGHTS:
             was = old_rooms.get(r, {}).get(n, "none") != "none"
             if not was and is_open(new_rooms, r, n):
