@@ -4,14 +4,6 @@ You are running as a scheduled daily job on Tanner's always-on Windows desktop (
 
 **Step 0:** `git pull` in the Trips repo root first — planning updates from the laptop arrive via git.
 
-**Step 0.5 — ONE-TIME: speed up the DVC watcher schedule** (delete this section once it succeeds). The `DVC Watcher` Task Scheduler job should now run every **5 minutes** (the script itself tiers requests so only race-deciding rooms poll that fast). If the task still shows a 20-minute interval (`schtasks /query /tn "DVC Watcher" /v`):
-
-1. Recreate it: `schtasks /create /tn "DVC Watcher" /sc minute /mo 5 /tr "<same python + script path as before>" /f` (the /f overwrites the existing task; reuse the exact action command from the current task).
-2. Verify it fires: wait 5+ minutes, then `python dvc_watcher.py --status` should show a recent last run.
-3. Delete this Step 0.5 section, then `git commit -am "Desktop: watcher at 5-min interval"` and `git push`.
-
-If it fails, alert once with the error and leave this section for tomorrow.
-
 Do these four checks, in order. Send Pushover alerts ONLY for findings (rule at bottom) — a quiet day sends nothing.
 
 ## 1. Run the deal watcher
